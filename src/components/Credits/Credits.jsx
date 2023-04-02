@@ -4,20 +4,20 @@ import { getCredits } from 'Api/Api';
 import { Suspense } from 'react';
 
 const Credits = () => {
-  const { movie } = useParams();
+  const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getCredits(movie);
+        const data = await getCredits(movieId);
         setCast(data.cast);
       } catch (err) {
         return err.message;
       }
     };
     fetchData();
-  }, [movie]);
+  }, [movieId]);
 
   return (
     <>

@@ -3,21 +3,21 @@ import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
 import { getMovieById } from 'Api/Api';
 
 const MovieDetails = () => {
-  const { movie } = useParams();
+  const { movieId } = useParams();
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getMovieById(movie);
+        const data = await getMovieById(movieId);
         setMovies(data);
       } catch (err) {
         return err.message;
       }
     };
     fetchData();
-  }, [movie]);
+  }, [movieId]);
   return (
     <main>
       <Link to={location.state?.from || '/'}>Go Back</Link>
@@ -39,7 +39,7 @@ const MovieDetails = () => {
             <ul>
               <li>
                 <Link
-                  to={`/movies/${movie}/cast`}
+                  to={`/movies/${movieId}/cast`}
                   state={{ from: location.state?.from || '/movies' }}
                 >
                   Cast
@@ -47,7 +47,7 @@ const MovieDetails = () => {
               </li>
               <li>
                 <Link
-                  to={`/movies/${movie}/reviews`}
+                  to={`/movies/${movieId}/reviews`}
                   state={{ from: location.state?.from || '/movies' }}
                 >
                   Reviews

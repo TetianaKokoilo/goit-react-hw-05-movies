@@ -3,20 +3,20 @@ import { useParams } from 'react-router-dom';
 import { getReviews } from 'Api/Api';
 
 const Reviews = () => {
-  const { movie } = useParams();
+  const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
     
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getReviews(movie);
+        const data = await getReviews(movieId);
         setReviews(data.results);
       } catch (err) {
         return err.message;
       }
     };
     fetchData();
-  }, [movie]);
+  }, [movieId]);
     
   return (
     <>
