@@ -36,7 +36,7 @@ export const Movies = () => {
     <div>
       <Form onSubmit={onHandleSubmit}>
         <Input type="text" value={name} onChange={handleChange} />
-        <Button type="submit">Movies</Button>
+        <Button type="submit">Search</Button>
       </Form>
       <Suspense fallback={<div>Loading...</div>}></Suspense>
       {movies && <MoviesList movies={movies} />}
