@@ -4,7 +4,7 @@ import { getKeyWord } from 'Api/Api';
 import { Form, Input, Button} from './Movies.styled';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 
-export const Movies = () => {
+const Movies = () => {
   const [name, setName] = useState('');
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,3 +43,5 @@ export const Movies = () => {
     </div>
   );
 };
+
+export default Movies;

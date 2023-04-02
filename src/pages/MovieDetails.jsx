@@ -2,7 +2,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
 import { getMovieById } from 'Api/Api';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movie } = useParams();
   const [movies, setMovies] = useState([]);
   const location = useLocation();
@@ -63,3 +63,5 @@ export const MovieDetails = () => {
     </main>
   );
 };
+
+export default MovieDetails;

@@ -4,7 +4,7 @@ import { getMovies } from "Api/Api";
 import { Button } from "components/Button/Button";
 
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [showBtn, setShowBtn] = useState(false);
@@ -36,4 +36,4 @@ export const Home = () => {
   );
 };
 
-
+export default Home;

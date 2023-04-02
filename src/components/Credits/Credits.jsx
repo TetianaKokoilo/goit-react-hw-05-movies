@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getCredits } from 'Api/Api';
 import { Suspense } from 'react';
 
-export const Credits = () => {
+const Credits = () => {
   const { movie } = useParams();
   const [cast, setCast] = useState([]);
 
@@ -36,3 +36,5 @@ export const Credits = () => {
     </>
   );
 };
+
+export default Credits;
