@@ -4,12 +4,12 @@ const API_TRENDING = 'https://api.themoviedb.org/3/trending/movie/day';
 const API_MOVIE_ID = 'https://api.themoviedb.org/3/movie/';
 const API_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
-export const getMovies = async (page,  total_pages) => {
+export const getMovies = async (page) => {
   const { data } = await axios.get(API_TRENDING, {
     params: {
       api_key: API_KEY,
       page: page,
-      total_pages: total_pages,
+      total_pages: 12,
     },
   });
   return data;
