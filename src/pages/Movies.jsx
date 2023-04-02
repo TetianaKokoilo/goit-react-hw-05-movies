@@ -1,20 +1,45 @@
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { getKeyWord } from 'Api/Api';
+import { Form, Input, Button} from './Movies.styled';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+
 export const Movies = () => {
+  const [name, setName] = useState('');
+  const [movies, setMovies] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchName = searchParams.get('name') ?? '';
+
+  const onHandleSubmit = e => {
+    e.preventDefault();
+    setSearchParams({ name: name });
+    setName('');
+  };
+
+  const handleChange = e => {
+    setName(e.target.value);
+  };
+
+  useEffect(() => {
+    const fetchByName = async () => {
+      try {
+        const { results } = await getKeyWord(searchName);
+        setMovies(results);
+      } catch (err) {
+        return err.message;
+      }
+    };
+    fetchByName();
+  }, [searchName]);
+
   return (
-    <main>
-      <h1>About Us</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
-        laborum amet ab cumque sit nihil dolore modi error repudiandae
-        perspiciatis atque voluptas corrupti, doloribus ex maiores quam magni
-        mollitia illum dolor quis alias in sequi quod. Sunt ex numquam hic
-        asperiores facere natus sapiente cum neque laudantium quam, expedita
-        voluptates atque quia aspernatur saepe illo, rem quasi praesentium
-        aliquid sed inventore obcaecati veniam? Nisi magnam vero, dolore
-        praesentium totam ducimus similique asperiores culpa, eius amet
-        repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
-        dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-        eaque voluptatibus eveniet error, nulla rem iusto?
-      </p>
-    </main>
+    <div>
+      <Form onSubmit={onHandleSubmit}>
+        <Input type="text" value={name} onChange={handleChange} />
+        <Button type="submit">Movies</Button>
+      </Form>
+      <Suspense fallback={<div>Loading...</div>}></Suspense>
+      {movies && <MoviesList movies={movies} />}
+    </div>
   );
 };
