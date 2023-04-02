@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { getMovies } from "Api/Api";
+import { Button } from "components/Button/Button";
 
 
 export const Home = () => {
@@ -22,7 +23,8 @@ export const Home = () => {
   return (
     <main>
       <h2>Trending by Day</h2>
-      <MoviesList movies={movies}/>
+      <MoviesList movies={movies} />
+      <Button />
     </main>
   );
 };
