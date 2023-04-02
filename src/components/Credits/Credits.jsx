@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 export const Credits = () => {
   const { movie } = useParams();
   const [cast, setCast] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,8 +15,8 @@ export const Credits = () => {
       } catch (err) {
         return err.message;
       }
-      };
-      fetchData();
+    };
+    fetchData();
   }, [movie]);
 
   return (
@@ -29,9 +29,8 @@ export const Credits = () => {
             src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
             alt={''}
           />
-          {/* <p>
-            {character} --- {original_name}
-          </p> */}
+          <p>{original_name}</p>
+          <p>Character: {character}</p>
         </div>
       ))}
     </>

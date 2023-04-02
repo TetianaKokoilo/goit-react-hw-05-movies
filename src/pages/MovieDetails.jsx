@@ -56,7 +56,6 @@ export const MovieDetails = () => {
             </ul>
           </div>
         </div>
-        // </div>
       )}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
